@@ -19,6 +19,6 @@ então fiz o script que separa os ultimos resultados em uma lista e era sorteios
 
 Depois de termonar o script, fiz 7 jogos indicados pelo programa, e veka você mesmo!
 
-![Teste na prática 1](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/Dados/Na-Pratica-Resultado-001.png)
-![Teste na prática 2](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/Dados/Na-Pratica-Resultado-002.png)
-![Teste na prática 3](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/Dados/Na-Pratica-Resultado-003.png)
+![Teste na prática 1](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-001.png)
+![Teste na prática 2](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-002.png)
+![Teste na prática 3](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-003.png)
