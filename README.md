@@ -13,12 +13,15 @@ Instalei o Python e então usei:
 3. Instalei a lib "sklearn"
 4. Baixei e preparei os resultados históricos em: https://redeloteria.com.br
 
-Olhando para estes resultados, eu vi que sempre aparecem vários números de sorteios anteriores entre nos últimos 5-10 jogos, pelo menos 4, o que já daria um prêmio.
+Olhando para estes resultados, eu vi que sempre aparecem vários números de sorteios anteriores entre os últimos 5-10 jogos, com pelo menos 4 acertos o que já daria um prêmio.
 
-então fiz o script que separa os ultimos resultados em uma lista e era sorteios aleatórios, e testa se isso daria alguma chance, mesmo que remota de ganhar algum prèmio.
+Então fiz o script que separa os ultimos resultados em uma lista e gera sorteios aleatórios, e testa se isso daria alguma chance, mesmo que remota de ganhar algum prèmio.
 
-Depois de termonar o script, fiz 7 jogos indicados pelo programa, e veka você mesmo!
+Depois de terminar o script, fiz 7 jogos indicados pelo programa, e veja você mesmo!
+
 
 ![Teste na prática 1](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-001.png)
+
 ![Teste na prática 2](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-002.png)
+
 ![Teste na prática 3](https://github.com/b2005luis/Brincando-de-machine-learning-com-Python/blob/main/Dados/Na-Pratica-Resultado-003.png)
