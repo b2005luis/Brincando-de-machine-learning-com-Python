@@ -7,12 +7,14 @@ data = pandas.read_csv("mega-sena.csv", header=0, sep=";")
 x_axis = data[["Coluna 1", "Coluna 2", "Coluna 3", "Coluna 4", "Coluna 5", "Coluna 6"]]
 y_axis = data["Ganhadores Faixa 1"]
 
-classifier = MLPClassifier(hidden_layer_sizes=(60, 60),
-                           learning_rate="adaptive",
-                           early_stopping=True,
-                           validation_fraction=0.66)
+classifier = MLPClassifier(hidden_layer_sizes=(60),
+                           activation="identity",
+                           alpha=0,
+                           beta_1=0,
+                           beta_2=0,
+                           shuffle=False)
 
-k = y_axis.__len__() - 8
+k = y_axis.__len__() - 10
 lista = []
 for ix, row in x_axis[k:].iterrows():
     for item in row:
