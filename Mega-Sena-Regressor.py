@@ -7,11 +7,11 @@ data = pandas.read_csv("../mega-sena.csv", header=0, sep=";")
 x_axis = data[["Coluna 1", "Coluna 2", "Coluna 3", "Coluna 4", "Coluna 5", "Coluna 6"]]
 y_axis = data["Ganhadores Faixa 1"]
 
-regressor = MLPRegressor(hidden_layer_sizes=(24, 24),
+regressor = MLPRegressor(hidden_layer_sizes=(36, 36),
                          learning_rate="adaptive")
-regressor.best_validation_score_ = 0.66
+regressor.best_validation_score_ = 0.16
 
-k = y_axis.__len__() - 30
+k = y_axis.__len__() - 18
 lista = []
 for ix, row in x_axis[k:].iterrows():
     for item in row:
@@ -24,6 +24,6 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 6)
     predicted = regressor.predict([to_predict])
-    if predicted >= 1.0:
+    if predicted > 0.0 and predicted < 0.67:
         print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
         i = i + 1
