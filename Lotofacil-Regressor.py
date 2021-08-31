@@ -3,25 +3,28 @@ from random import sample
 from pandas import DataFrame
 from sklearn.neural_network import MLPRegressor
 
-from MegaSenaRepository import MegaSenaRepository
+from LotofacilRepository import LotofacilRepository
 
-repository = MegaSenaRepository()
-download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Ganhadores")
+repository = LotofacilRepository()
+download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, "
+                                        "Coluna6, Coluna7, Coluna8, Coluna9, Coluna10, "
+                                        "Coluna11, Coluna12, Coluna13, Coluna14, Coluna15, Ganhadores")
 repository.finalizar()
 
 data = DataFrame(download)
 
-x_axis = data[[0, 1, 2, 3, 4, 5]]
-y_axis = data[6]
+x_axis = data[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+y_axis = data[15]
 
-regressor = MLPRegressor(hidden_layer_sizes=(30,100,30),
+regressor = MLPRegressor(hidden_layer_sizes=(30, 100, 30),
                          alpha=0.0,
                          beta_1=0.0,
                          beta_2=0.0,
                          learning_rate="adaptive")
 
-ks = y_axis.__len__() - 30
-ke = y_axis.__len__() - 15
+ex = 15
+ks = y_axis.__len__() - (ex + ex)
+ke = y_axis.__len__() - ex
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
     for item in row:
@@ -38,9 +41,9 @@ acertos = []
 
 i = 1
 while i <= 7:
-    to_predict = sample(lista, 6)
+    to_predict = sample(lista, 15)
     predicted = regressor.predict([to_predict])
-    if predicted > 0.0 and predicted <= 1.0:
+    if predicted >= 1.0:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
