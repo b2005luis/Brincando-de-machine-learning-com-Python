@@ -40,7 +40,7 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 6)
     predicted = regressor.predict([to_predict])
-    if predicted > 0.0 and predicted <= 1.0:
+    if predicted >= 1.0:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
