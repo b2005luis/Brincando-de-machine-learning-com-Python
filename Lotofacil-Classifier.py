@@ -3,17 +3,20 @@ from random import sample
 from pandas import DataFrame
 from sklearn.neural_network import MLPClassifier
 
-from MegaSenaRepository import MegaSenaRepository
+from LotofacilRepository import LotofacilRepository
 
-repository = MegaSenaRepository()
-download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Ganhadores")
+repository = LotofacilRepository()
+download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, "
+                                        "Coluna6, Coluna7, Coluna8, Coluna9, Coluna10, "
+                                        "Coluna11, Coluna12, Coluna13, Coluna14, Coluna15, Ganhadores")
+repository.finalizar()
 
 data = DataFrame(download)
 
-x_axis = data[[0, 1, 2, 3, 4, 5]]
-y_axis = data[6]
+x_axis = data[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
+y_axis = data[15]
 
-classifier = MLPClassifier(hidden_layer_sizes=(30, 30),
+classifier = MLPClassifier(hidden_layer_sizes=(30, 100, 30),
                            alpha=0.0,
                            beta_1=0.0,
                            beta_2=0.0,
@@ -32,7 +35,7 @@ classifier.fit(x_axis[:ks], y_axis[:ks])
 
 i = 1
 while i <= 7:
-    to_predict = sample(lista, 6)
+    to_predict = sample(lista, 15)
     predicted = classifier.predict([to_predict])
     if predicted >= 1:
         print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
