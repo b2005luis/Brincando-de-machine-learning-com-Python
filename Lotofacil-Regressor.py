@@ -16,15 +16,14 @@ data = DataFrame(download)
 x_axis = data[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]]
 y_axis = data[15]
 
-regressor = MLPRegressor(hidden_layer_sizes=(30, 100, 30),
+regressor = MLPRegressor(hidden_layer_sizes=(30, 30),
                          alpha=0.0,
                          beta_1=0.0,
                          beta_2=0.0,
                          learning_rate="adaptive")
 
-ex = 15
-ks = y_axis.__len__() - (ex + ex)
-ke = y_axis.__len__() - ex
+ks = y_axis.__len__() - 20
+ke = y_axis.__len__() - 2
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
     for item in row:
@@ -43,7 +42,7 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 15)
     predicted = regressor.predict([to_predict])
-    if predicted >= 1.0:
+    if predicted >= 0.44 and predicted <= 0.6:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
