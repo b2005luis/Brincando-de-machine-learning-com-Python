@@ -19,9 +19,9 @@ classifier = MLPClassifier(hidden_layer_sizes=(30, 30),
                            beta_2=0.0,
                            learning_rate="adaptive")
 
-ex = 8
+ex = 16
 ks = y_axis.__len__() - ex
-ke = y_axis.__len__()
+ke = y_axis.__len__() - 1
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
     for item in row:

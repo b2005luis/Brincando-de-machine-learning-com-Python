@@ -20,8 +20,8 @@ regressor = MLPRegressor(hidden_layer_sizes=(30, 30),
                          beta_2=0.0,
                          learning_rate="adaptive")
 
-ks = y_axis.__len__() - 20
-ke = y_axis.__len__() - 2
+ks = y_axis.__len__() - 11
+ke = y_axis.__len__() - 1
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
     for item in row:
