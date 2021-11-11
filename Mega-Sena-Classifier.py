@@ -19,21 +19,34 @@ classifier = MLPClassifier(hidden_layer_sizes=(30, 30),
                            beta_2=0.0,
                            learning_rate="adaptive")
 
-ex = 16
+ex = 20
 ks = y_axis.__len__() - ex
-ke = y_axis.__len__() - 1
+ke = y_axis.__len__()
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
     for item in row:
         if not lista.__contains__(item):
             lista.append(item)
 
-classifier.fit(x_axis[:ks], y_axis[:ks])
+classifier.fit(x_axis, y_axis)
+
+print("Esoerados")
+esperados = x_axis[ks + 18:]
+print("{}\n".format(esperados))
+
+acertos = []
 
 i = 1
 while i <= 7:
     to_predict = sample(lista, 6)
     predicted = classifier.predict([to_predict])
     if predicted >= 1:
-        print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
-        i = i + 1
+        for ix, row in esperados.iterrows():
+            for e in row:
+                if to_predict.__contains__(e):
+                    acertos.append(e)
+        if len(acertos) <= 1:
+            print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
+            print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
+            i = i + 1
+        acertos.clear()

@@ -20,7 +20,8 @@ regressor = MLPRegressor(hidden_layer_sizes=(30, 30),
                          beta_2=0.0,
                          learning_rate="adaptive")
 
-ks = y_axis.__len__() - 15
+ex = 20
+ks = y_axis.__len__() - ex
 ke = y_axis.__len__()
 lista = []
 for ix, row in x_axis[ks:ke].iterrows():
@@ -31,7 +32,7 @@ for ix, row in x_axis[ks:ke].iterrows():
 regressor.fit(x_axis, y_axis)
 
 print("Esoerados")
-esperados = x_axis[ke - 1:]
+esperados = x_axis[ks + 10:]
 print("{}\n".format(esperados))
 
 acertos = []
@@ -40,12 +41,13 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 6)
     predicted = regressor.predict([to_predict])
-    if predicted >= 0.6666666666666667 and predicted <= 1.0:
+    if predicted >= 0.6666666666666667:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
-        print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
-        print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
-        i = i + 1
+        if len(acertos) <= 1:
+            print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
+            print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
+            i = i + 1
         acertos.clear()
