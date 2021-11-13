@@ -13,11 +13,7 @@ data = DataFrame(download)
 x_axis = data[[0, 1, 2, 3, 4, 5]]
 y_axis = data[6]
 
-classifier = MLPClassifier(hidden_layer_sizes=(30, 30),
-                           alpha=0.0,
-                           beta_1=0.0,
-                           beta_2=0.0,
-                           learning_rate="adaptive")
+classifier = MLPClassifier(hidden_layer_sizes=(60, 60))
 
 ex = 20
 ks = y_axis.__len__() - ex
@@ -31,7 +27,7 @@ for ix, row in x_axis[ks:ke].iterrows():
 classifier.fit(x_axis, y_axis)
 
 print("Esoerados")
-esperados = x_axis[ks + 18:]
+esperados = x_axis[ks + 10:]
 print("{}\n".format(esperados))
 
 acertos = []

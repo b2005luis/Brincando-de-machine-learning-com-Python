@@ -1,0 +1,12 @@
+# Default ignored files
+/.idea/
+/__pychache__/
+/Brincando-de-machine-learning-com-Python.iml
+/dataSources.local.xml
+/dataSources.xml
+/misc.xml
+/ML-Trainning.iml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+/vcs.xml
+/workspace.xml
