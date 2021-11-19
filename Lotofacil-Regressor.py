@@ -30,7 +30,7 @@ for ix, row in x_axis[ks:ke].iterrows():
 regressor.fit(x_axis, y_axis)
 
 print("Esoerados")
-esperados = x_axis[ks + 18:]
+esperados = x_axis[ks + 19:]
 print("{}\n".format(esperados))
 
 acertos = []
@@ -39,12 +39,12 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 15)
     predicted = regressor.predict([to_predict])
-    if predicted >= 0.7333333333333333:
+    if predicted >= 0.44 and predicted <= 0.60:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
-        if len(acertos) <= 7:
+        if len(acertos) <= 10:
             print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
             print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
             i = i + 1

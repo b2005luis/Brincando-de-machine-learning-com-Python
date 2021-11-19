@@ -30,7 +30,7 @@ for ix, row in x_axis[ks:ke].iterrows():
 classifier.fit(x_axis, y_axis)
 
 print("Esoerados")
-esperados = x_axis[ks + 18:]
+esperados = x_axis[ks + 19:]
 print("{}\n".format(esperados))
 
 acertos = []
@@ -44,7 +44,7 @@ while i <= 7:
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
-        if len(acertos) <= 7:
+        if len(acertos) <= 10:
             print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
             print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
             i = i + 1
