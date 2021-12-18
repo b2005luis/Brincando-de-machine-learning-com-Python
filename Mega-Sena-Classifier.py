@@ -13,9 +13,9 @@ data = DataFrame(download)
 x_axis = data[[0, 1, 2, 3, 4, 5]]
 y_axis = data[6]
 
-classifier = MLPClassifier(hidden_layer_sizes=(60, 60))
+classifier = MLPClassifier(hidden_layer_sizes=(60))
 
-ex = 20
+ex = 50
 ks = y_axis.__len__() - ex
 ke = y_axis.__len__()
 lista = []
@@ -27,10 +27,13 @@ for ix, row in x_axis[ks:ke].iterrows():
 classifier.fit(x_axis, y_axis)
 
 print("Esoerados")
-esperados = x_axis[ks + 10:]
+esperados = x_axis[ks + 38:]
 print("{}\n".format(esperados))
 
 acertos = []
+
+# Lista completa de numeros
+lista = list(range(1, 61, 1))
 
 i = 1
 while i <= 7:
@@ -41,6 +44,7 @@ while i <= 7:
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
+
         if len(acertos) <= 1:
             print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
             print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
