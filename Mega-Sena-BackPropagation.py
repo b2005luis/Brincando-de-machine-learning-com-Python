@@ -19,18 +19,18 @@ for row in download.__iter__():
     dataset.addSample(in_value, out_value)
 
 # Create neural network
-neural = buildNetwork(6, 60, 60, 1, bias=True)
+neural = buildNetwork(6, 15, 15, 1, bias=False)
 
 # Train for models
 trainer = BackpropTrainer(neural, dataset)
-for i in range(11):
+for i in range(5):
     TTR = float(trainer.train())
     print("{}ª Fase do Treinamento | Margem de Erro :: {:.2f}%".format(i, TTR))
 
 # Numbers generator
 all_numbers = list(range(1, 61, 1))
 
-ex = 15
+ex = 12
 k = download.__len__()
 # print("\nEsoerados")
 esperados = []
@@ -46,7 +46,7 @@ while i <= 14:
     # Activate network
     predicted = float(neural.activate(to_predict))
 
-    if predicted >= 0.0 and predicted <= TTR:
+    if predicted >= 0.06:
         for row in esperados.__iter__():
             for e in row:
                 if to_predict.__contains__(e):
