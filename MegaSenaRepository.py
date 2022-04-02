@@ -41,6 +41,16 @@ class MegaSenaRepository:
         except Exception as erro:
             print(erro.__str__())
 
+    def deletar(self, params: any):
+        try:
+            self.cursor.execute(
+                "DELETE FROM Resultados WHERE Concurso = ?",
+                params
+            )
+            self.connect.commit()
+        except Exception as error:
+            print(error.__str__())
+
     def finalizar(self):
         self.cursor.close()
         self.connect.close()

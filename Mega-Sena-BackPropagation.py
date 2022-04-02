@@ -19,18 +19,18 @@ for row in download.__iter__():
     dataset.addSample(in_value, out_value)
 
 # Create neural network
-neural = buildNetwork(6, 15, 15, 1, bias=False)
+neural = buildNetwork(6, 60, 1, bias=True)
 
 # Train for models
 trainer = BackpropTrainer(neural, dataset)
-for i in range(5):
+for i in range(1):
     TTR = float(trainer.train())
     print("{}ª Fase do Treinamento | Margem de Erro :: {:.2f}%".format(i, TTR))
 
 # Numbers generator
 all_numbers = list(range(1, 61, 1))
 
-ex = 12
+ex = 8
 k = download.__len__()
 # print("\nEsoerados")
 esperados = []
@@ -38,21 +38,26 @@ for row in download[(k - ex):].__iter__():
     esperados.append(row[:6])
     # print("{}".format(row[:6]))
 
+jogos = []
 acertos = []
+
 i = 1
-while i <= 14:
+while i <= 7:
     to_predict = sample(all_numbers, 6)
 
     # Activate network
     predicted = float(neural.activate(to_predict))
 
-    if predicted >= 0.06:
+    if predicted <= 0:
         for row in esperados.__iter__():
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
-        if len(acertos) <= 1:
-            print("\n{} :: {:.2f}".format(sorted(to_predict, reverse=False), predicted))
-            print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
+        if acertos.__len__() <= 2:
+            jogos.append(sorted(to_predict, reverse=False))
+            esperados.append(to_predict)
+            print("{} :: {:.2f}".format(sorted(to_predict, reverse=False), predicted))
             i = i + 1
         acertos.clear()
+
+print("\n\n{}".format(jogos))

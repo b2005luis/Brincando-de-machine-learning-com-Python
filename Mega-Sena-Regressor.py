@@ -14,24 +14,19 @@ data = DataFrame(download)
 x_axis = data[[0, 1, 2, 3, 4, 5]]
 y_axis = data[6]
 
-regressor = MLPRegressor(hidden_layer_sizes=(30, 30))
+regressor = MLPRegressor(hidden_layer_sizes=(60, 60))
 
-ex = 50
+ex = 30
 ks = y_axis.__len__() - ex
-ke = y_axis.__len__()
-lista = []
-for ix, row in x_axis[ks:ke].iterrows():
-    for item in row:
-        if not lista.__contains__(item):
-            lista.append(item)
 
 regressor.fit(x_axis, y_axis)
 
-print("Esoerados")
-esperados = x_axis[ke - 8:]
+print("Esperados")
+esperados = x_axis[ks:]
 print("{}\n".format(esperados))
 
 acertos = []
+apostas = []
 
 lista = list(range(1, 61, 1))
 
@@ -39,19 +34,32 @@ i = 1
 while i <= 7:
     to_predict = sample(lista, 6)
     predicted = regressor.predict([to_predict])
-    if predicted >= 6.66666666666667:
+
+    if predicted >= [2.0]:
         for ix, row in esperados.iterrows():
-            for e in row:
+            for e in row.__iter__():
                 if to_predict.__contains__(e):
                     acertos.append(e)
-        if len(acertos) <= 2:
-            print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
-            print("Acerto(s) :: {} = {} acertos".format(acertos, acertos.__len__()))
+            if acertos.__len__() > 1:
+                break
+            acertos.clear()
+
+        print("{} :: Acertos: {} acertos".format(to_predict, acertos.__len__()))
+
+        if acertos.__len__() <= 1:
+            aposta = sorted(to_predict, reverse=False)
+            apostas.append(aposta)
             i = i + 1
+        esperados.__add__(to_predict)
         acertos.clear()
 
+
+print("\n[")
+for jogo in apostas.__iter__():
+    print("   {}".format(jogo))
+print("]")
 '''
-to_predict = [7, 29, 38, 40, 44, 52]
+to_predict = [9, 14, 22, 24, 44, 47]
 predicted = regressor.predict([to_predict])
 print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
 '''

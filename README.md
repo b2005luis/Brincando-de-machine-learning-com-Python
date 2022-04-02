@@ -13,6 +13,14 @@ Instalei o Python e então usei:
 3. Instalei a lib "sklearn"
 4. Baixei e preparei os resultados históricos em: https://redeloteria.com.br
 
+Instalação das Dependências:
+
+> python -m pip install sklearn
+
+> python -m pip install pandas
+
+> python -m pip install pybrain3
+
 Olhando para estes resultados, eu vi que sempre aparecem vários números de sorteios anteriores entre os últimos 5-10 jogos, com pelo menos 4 acertos o que já daria um prêmio.
 
 Então fiz o script que separa os ultimos resultados em uma lista e gera sorteios aleatórios, e testa se isso daria alguma chance, mesmo que remota de ganhar algum prèmio.
