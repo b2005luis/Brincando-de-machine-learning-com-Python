@@ -1,4 +1,5 @@
 import sqlite3
+from os import error
 from sqlite3 import Connection, Cursor
 
 
@@ -40,6 +41,16 @@ class MegaSenaRepository:
             self.connect.commit()
         except Exception as erro:
             print(erro.__str__())
+
+    def deletar(self, params: any):
+        try:
+            self.cursor.execute(
+                "DELETE FROM Resultados WHERE Concurso = ?",
+                params
+            )
+            self.connect.commit()
+        except Exception as error:
+            print(error.__str__())
 
     def finalizar(self):
         self.cursor.close()
