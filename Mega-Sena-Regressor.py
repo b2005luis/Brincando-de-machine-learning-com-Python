@@ -14,9 +14,9 @@ data = DataFrame(download)
 x_axis = data[[0, 1, 2, 3, 4, 5]]
 y_axis = data[6]
 
-regressor = MLPRegressor(hidden_layer_sizes=(20))
+regressor = MLPRegressor(hidden_layer_sizes=(30))
 
-ex = 6
+ex = 15
 ks = y_axis.__len__() - ex
 
 regressor.fit(x_axis, y_axis)
@@ -36,13 +36,15 @@ while i <= 7:
 
     predicted = regressor.predict([to_predict])
 
-    if predicted > 0 and predicted < 0.67:
+    if predicted >= 0.1:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
+                if acertos.__len__() > 3:
+                    break
 
-        if acertos.__len__() <= 2:
+        if acertos.__len__() <= 3:
             aposta = sorted(to_predict, reverse=False)
             apostas.append(aposta)
             i = i + 1
