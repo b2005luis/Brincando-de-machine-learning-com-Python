@@ -1,14 +1,13 @@
 import sqlite3
-from os import error
 from sqlite3 import Connection, Cursor
 
 
-class MegaSenaRepository:
+class QuinaRepository:
     connect: Connection
     cursor: Cursor
 
     def __init__(self):
-        self.connect = sqlite3.connect("./Dados/Mega-Sena.db")
+        self.connect = sqlite3.connect("./Dados/Quina.db")
         self.cursor = self.connect.cursor()
 
     def existe(self, params: any):
@@ -35,7 +34,7 @@ class MegaSenaRepository:
     def cadastrar(self, params: any):
         try:
             self.cursor.execute(
-                "INSERT INTO Resultados VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO Resultados VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 params
             )
             self.connect.commit()

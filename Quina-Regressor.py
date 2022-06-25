@@ -3,20 +3,20 @@ from random import sample
 from pandas import DataFrame
 from sklearn.neural_network import MLPRegressor
 
-from MegaSenaRepository import MegaSenaRepository
+from QuinaRepository import QuinaRepository
 
-repository = MegaSenaRepository()
-download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Ganhadores")
+repository = QuinaRepository()
+download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Ganhadores")
 repository.finalizar()
 
 data = DataFrame(download)
 
-x_axis = data[[0, 1, 2, 3, 4, 5]]
-y_axis = data[6]
+x_axis = data[[0, 1, 2, 3, 4]]
+y_axis = data[5]
 
-regressor = MLPRegressor(hidden_layer_sizes=(20))
+regressor = MLPRegressor(hidden_layer_sizes=(30))
 
-ex = 6
+ex = 25
 ks = y_axis.__len__() - ex
 
 regressor.fit(x_axis, y_axis)
@@ -28,19 +28,21 @@ print("{}\n".format(esperados))
 acertos = []
 apostas = []
 
-lista = list(range(1, 61, 1))
+lista = list(range(1, 81, 1))
 
 i = 1
-while i <= 7:
-    to_predict = sample(lista, 6)
+while i <= 10:
+    to_predict = sample(lista, 5)
 
     predicted = regressor.predict([to_predict])
 
-    if predicted > 0 and predicted < 0.67:
+    if predicted >= 0.0625:
         for ix, row in esperados.iterrows():
             for e in row:
                 if to_predict.__contains__(e):
                     acertos.append(e)
+                if acertos.__len__() > 2:
+                    break
 
         if acertos.__len__() <= 2:
             aposta = sorted(to_predict, reverse=False)
@@ -53,9 +55,3 @@ print("\n[")
 for jogo in apostas.__iter__():
     print("   {}".format(jogo))
 print("]")
-
-'''
-to_predict = [9, 14, 22, 24, 44, 47]
-predicted = regressor.predict([to_predict])
-print("{} :: {}".format(sorted(to_predict, reverse=False), predicted))
-'''

@@ -4,10 +4,10 @@ from pybrain3.datasets import SupervisedDataSet
 from pybrain3.supervised import BackpropTrainer
 from pybrain3.tools.shortcuts import buildNetwork
 
-from MegaSenaRepository import MegaSenaRepository
+from MegaSenaRepository import QuinaRepository
 
 # Load data for trainer and network
-repository = MegaSenaRepository()
+repository = QuinaRepository()
 download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Ganhadores")
 repository.finalizar()
 

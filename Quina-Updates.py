@@ -1,10 +1,10 @@
-from MegaSenaDownload import MegaSenaDownload
-from MegaSenaRepository import MegaSenaRepository
+from QuinaDownload import QuinaDownload
+from QuinaRepository import QuinaRepository
 
-download = MegaSenaDownload()
+download = QuinaDownload()
 download.buscar_resultados()
 
-repository = MegaSenaRepository()
+repository = QuinaRepository()
 
 for item in download.data:
     concurso = item[0]

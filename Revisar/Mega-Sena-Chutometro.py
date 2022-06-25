@@ -1,9 +1,9 @@
 from random import sample
 from pandas import DataFrame
-from MegaSenaRepository import MegaSenaRepository
+from MegaSenaRepository import QuinaRepository
 
 
-repository = MegaSenaRepository()
+repository = QuinaRepository()
 download = repository.listar_resultados("Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Ganhadores")
 repository.finalizar()
 
